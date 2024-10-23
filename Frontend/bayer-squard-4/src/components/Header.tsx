@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Link from 'next/link';
 
@@ -41,6 +42,16 @@ const Header: React.FC = () => {
               <Link href="/contact" passHref>
                 <span className="hover:text-blue-300 cursor-pointer">Contact</span>
               </Link>
+            </li>
+            <li>
+              <a href="/login" className="hover:text-blue-300">
+                Login
+              </a>
+            </li>
+            <li>
+              <a href="/appointment" className="hover:text-blue-300">
+                appointment
+              </a>
             </li>
           </ul>
         </nav>

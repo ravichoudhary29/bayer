@@ -1,60 +1,65 @@
-import React from "react";
-import Input from "../../../components/Input";
-import Button from "../../../components/Button";
-import Image from "next/image";
+"use client";
+import HealthTopicCard from "@/components/HealthTopicCard";
+import HeroSection from "@/components/HeroSection";
+import withLayout from "@/hoc/withLayout";
+import React, { useState } from "react";
 
-interface FormProps {
+// Define TypeScript interfaces for health topics
+interface HealthTopic {
   title: string;
-  children?: React.ReactNode;
+  description: string;
 }
 
-const withFormWrapper = <P extends object>(
-  Component: React.ComponentType<P>
-) => {
-  // eslint-disable-next-line react/display-name
-  return (props: P & FormProps) => (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-        <div className="items-center w-full flex justify-center">
-          <Image className="mb-4" alt="" src={"/"} height={150} width={150} />
+const HomePage: React.FC = () => {
+  // Hardcoded array of health topics (to be replaced by API call)
+  const [healthTopics] = useState<HealthTopic[]>([
+    {
+      title: "COVID-19 Updates",
+      description:
+        "Stay informed about the latest COVID-19 guidelines and vaccination information.",
+    },
+    {
+      title: "Heart Health",
+      description:
+        "Discover tips and information for maintaining a healthy heart and cardiovascular system.",
+    },
+    {
+      title: "Mental Wellness",
+      description:
+        "Explore resources and support options for maintaining good mental health.",
+    },
+  ]);
+
+  return (
+    <div>
+      <HeroSection />
+
+      <section
+        id="health-topics"
+        className="py-12 bg-gray-100"
+        aria-labelledby="featured-topics-heading"
+      >
+        <div className="container mx-auto px-4">
+          <h3
+            id="featured-topics-heading"
+            className="text-2xl font-bold text-gray-800 mb-8"
+          >
+            Featured Health Topics
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {healthTopics.map((topic, index) => (
+              <HealthTopicCard
+                key={index}
+                title={topic.title}
+                description={topic.description}
+              />
+            ))}
+          </div>
         </div>
-        <h2 className="text-2xl font-bold text-center text-blue-600 mb-4">
-          {props.title}
-        </h2>
-        <Component {...props} />
-      </div>
+      </section>
     </div>
   );
 };
 
-// Login Form Component
-const LoginForm: React.FC = () => {
-  return (
-    <form className="space-y-4">
-      <Input type="email" placeholder="Email" name="email" required />
-      <Input type="password" placeholder="Password" name="password" required />
-      <Button text="Login" />
-      <div className="text-center text-sm">
-        <a href="#" className="text-blue-500 hover:underline">
-          Forgot Password?
-        </a>
-      </div>
-      <div className="text-center text-sm">
-        <span>New User? </span>
-        <a href="#" className="text-blue-500 hover:underline">
-          Register here
-        </a>
-      </div>
-    </form>
-  );
-};
-
-// Wrapping the LoginForm with HOC for consistent styling
-const LoginWithFormWrapper = withFormWrapper(LoginForm);
-
-// Page Component
-const LoginPage: React.FC = () => {
-  return <LoginWithFormWrapper title="Login" />;
-};
-
-export default LoginPage;
+// Wrap the HomePage component with the layout HOC
+export default withLayout(HomePage);
