@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
   return (
@@ -7,30 +8,39 @@ const Header: React.FC = () => {
         <h1 className="text-3xl font-bold">Bayer Healthcare</h1>
         <nav className="mt-4">
           <ul className="flex space-x-6">
+            {/* Link to Home page */}
             <li>
-              <a href="#home" className="hover:text-blue-300">
-                Home
-              </a>
+              <Link href="/" passHref>
+                <span className="hover:text-blue-300 cursor-pointer">Home</span>
+              </Link>
             </li>
+
+            {/* Link to Health Topics */}
             <li>
-              <a href="#health-topics" className="hover:text-blue-300">
-                Health Topics
-              </a>
+              <Link href="/health-topics" passHref>
+                <span className="hover:text-blue-300 cursor-pointer">Health Topics</span>
+              </Link>
             </li>
+
+            {/* Link to Resources */}
             <li>
-              <a href="#resources" className="hover:text-blue-300">
-                Resources
-              </a>
+              <Link href="/resources" passHref>
+                <span className="hover:text-blue-300 cursor-pointer">Resources</span>
+              </Link>
             </li>
+
+            {/* Link to About Us */}
             <li>
-              <a href="#about" className="hover:text-blue-300">
-                About Us
-              </a>
+              <Link href="/about" passHref>
+                <span className="hover:text-blue-300 cursor-pointer">About Us</span>
+              </Link>
             </li>
+
+            {/* Link to Contact */}
             <li>
-              <a href="#contact" className="hover:text-blue-300">
-                Contact
-              </a>
+              <Link href="/contact" passHref>
+                <span className="hover:text-blue-300 cursor-pointer">Contact</span>
+              </Link>
             </li>
           </ul>
         </nav>
