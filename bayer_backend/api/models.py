@@ -1,27 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .models import Patient, Doctor
 from datetime import datetime, timedelta
-
-class Appointment(models.Model):
-    STATUS_CHOICES = [
-        ('S', 'Scheduled'),
-        ('C', 'Completed'),
-        ('X', 'Cancelled'),
-    ]
-
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='appointments')
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='appointments')
-    appointment_date = models.DateTimeField(default=timezone.now)
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='S')
-    reason_for_visit = models.TextField()
-
-    def __str__(self):
-        return f"Appointment: {self.patient} with Dr. {self.doctor} on {self.appointment_date.strftime('%Y-%m-%d %H:%M')}"
-
-    class Meta:
-        ordering = ['-appointment_date']
 
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)  # Link to the User model
@@ -76,7 +56,7 @@ class Doctor(models.Model):
 
     def __str__(self):
         return f"Dr. {self.user.first_name} {self.user.last_name} - {self.get_specialization_display()}"
-    
+
 class Slot(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     start_time = models.TimeField()
@@ -103,6 +83,7 @@ class Appointment(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='appointments')
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='appointments')
     slot = models.ForeignKey(Slot, on_delete=models.CASCADE, related_name='appointments')
+    appointment_date = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='S')
     reason_for_visit = models.TextField()
     additional_details = models.TextField(blank=True, null=True)  # Optional field    
