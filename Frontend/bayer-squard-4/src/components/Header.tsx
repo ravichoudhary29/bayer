@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Header: React.FC = () => {
   return (
@@ -30,6 +30,16 @@ const Header: React.FC = () => {
             <li>
               <a href="#contact" className="hover:text-blue-300">
                 Contact
+              </a>
+            </li>
+            <li>
+              <a href="/login" className="hover:text-blue-300">
+                Login
+              </a>
+            </li>
+            <li>
+              <a href="/appointment" className="hover:text-blue-300">
+                appointment
               </a>
             </li>
           </ul>
