@@ -9,7 +9,7 @@ import React from "react";
 
 // Appointment Form Component
 interface AppointmentFormProps {
-  onSubmit: () => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const AppointmentForm: React.FC<AppointmentFormProps> = ({ onSubmit }) => {
@@ -84,7 +84,7 @@ const AppointmentFormWithWrapper = withFormWrapper(AppointmentForm);
 
 // Appointment Page
 const AppointmentPage: React.FC = () => {
-  const handleFormSubmit = (e: unknown) => {
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("Appointment Booked!");
   };

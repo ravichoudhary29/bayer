@@ -2,8 +2,9 @@
 interface TextInputProps {
   type: string;
   placeholder: string;
-  label: string;
+  label?: string;
   name: string;
+  required?: boolean;
 }
 
 const Input: React.FC<TextInputProps> = ({
@@ -11,15 +12,19 @@ const Input: React.FC<TextInputProps> = ({
   placeholder,
   label,
   name,
+  required = false,
 }) => (
   <div className="mb-4">
-    <label
-      htmlFor={name}
-      className="block text-gray-700 text-sm font-semibold mb-2"
-    >
-      {label}
-    </label>
+    {label && (
+      <label
+        htmlFor={name}
+        className="block text-gray-700 text-sm font-semibold mb-2"
+      >
+        {label}
+      </label>
+    )}
     <input
+      required={required}
       type={type}
       name={name}
       id={name}
