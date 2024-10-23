@@ -13,6 +13,7 @@ const TimeSlotButton: React.FC<TimeSlotButtonProps> = ({
     className={`py-2 px-4 border rounded-md focus:outline-none ${
       isSelected ? "bg-blue-600 text-white" : "bg-gray-200 hover:bg-gray-300"
     }`}
+    type="button"
     onClick={onClick}
   >
     {time}

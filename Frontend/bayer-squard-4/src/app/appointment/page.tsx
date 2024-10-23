@@ -86,7 +86,8 @@ const AppointmentFormWithWrapper = withFormWrapper(AppointmentForm);
 const AppointmentPage: React.FC = () => {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Appointment Booked!");
+    // alert("Appointment Booked!");
+    console.log(e);
   };
 
   return (

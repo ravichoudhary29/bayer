@@ -1,79 +1,73 @@
 "use client";
 
-import React, { useState } from "react";
-import Input from "@/components/Input";
+import React from "react";
+import { useForm } from "react-hook-form";
+// import Input from "@/components/Input";
 import Button from "@/components/Button";
 import withFormWrapper from "@/hoc/withFormWrapper";
 
-// Login Form Component
+interface FormData {
+  email: string;
+  password: string;
+}
+
+// Login Form Component using React Hook Form
 const LoginForm: React.FC = () => {
-  const [emailError, setEmailError] = useState<string | null>(null);
-  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-
-    // Basic email format check (you can replace this with a better regex)
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      setEmailError("Please enter a valid email address.");
-    } else {
-      setEmailError(null);
-    }
-
-    // Password length check
-    if (password.length < 6) {
-      setPasswordError("Password must be at least 6 characters long.");
-    } else {
-      setPasswordError(null);
-    }
-
-    // If both fields are valid
-    if (emailPattern.test(email) && password.length >= 6) {
-      // Submit the form data
-      alert("Form submitted successfully!");
-    }
+  // Handle form submission
+  const onSubmit = (data: FormData) => {
+    alert(`Email: ${data.email}\nPassword: ${data.password}`);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      {/* Email Field */}
       <div>
-        <Input
+        <input
+          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           type="email"
           placeholder="Email"
-          name="email"
-          aria-invalid={emailError ? "true" : "false"}
-          aria-describedby="email-error"
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Please enter a valid email address",
+            },
+          })}
         />
-        {emailError && (
-          <p id="email-error" className="text-red-500 text-sm mt-1">
-            {emailError}
-          </p>
+        {errors.email && (
+          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
         )}
       </div>
 
+      {/* Password Field */}
       <div>
-        <Input
+        <input
+          className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           type="password"
           placeholder="Password"
-          name="password"
-          minLength={6}
-          aria-invalid={passwordError ? "true" : "false"}
-          aria-describedby="password-error"
+          {...register("password", {
+            required: "Password is required",
+            minLength: {
+              value: 6,
+              message: "Password must be at least 6 characters long",
+            },
+          })}
         />
-        {passwordError && (
-          <p id="password-error" className="text-red-500 text-sm mt-1">
-            {passwordError}
-          </p>
+        {errors.password && (
+          <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
         )}
       </div>
 
+      {/* Submit Button */}
       <Button text="Login" type="submit" />
 
+      {/* Additional Links */}
       <div className="text-center text-sm">
         <a href="#" className="text-blue-500 hover:underline">
           Forgot Password?

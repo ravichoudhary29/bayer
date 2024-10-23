@@ -13,8 +13,7 @@ const Input: React.FC<TextInputProps> = ({
   placeholder,
   label,
   name,
-  required = false,
-  minLength = 1,
+  ...rest
 }) => (
   <div className="mb-4">
     {label && (
@@ -26,13 +25,12 @@ const Input: React.FC<TextInputProps> = ({
       </label>
     )}
     <input
-      required={required}
-      minLength={minLength}
       type={type}
       name={name}
       id={name}
       placeholder={placeholder}
       className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      {...rest}
     />
   </div>
 );
