@@ -93,8 +93,6 @@ class Slot(models.Model):
     class Meta:
         unique_together = ('doctor', 'start_time', 'date')  # Ensure slots are unique per doctor per date
 
-
-    
 class Appointment(models.Model):
     STATUS_CHOICES = [
         ('S', 'Scheduled'),
@@ -114,4 +112,11 @@ class Appointment(models.Model):
 
     class Meta:
         ordering = ['-appointment_date']
+        
+class PublicInfo(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)  # Optional field
+    content = models.TextField()
 
+    def __str__(self):
+        return self.title
