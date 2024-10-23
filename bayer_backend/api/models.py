@@ -71,7 +71,7 @@ class Slot(models.Model):
         return f"{self.doctor.user.username} - {self.start_time} to {self.end_time} on {self.date}"
 
     class Meta:
-        unique_together = ('doctor', 'start_time', 'date')  # Ensure slots are unique per doctor per date
+        unique_together = ('doctor', 'start_time', 'date')
 
 class Appointment(models.Model):
     STATUS_CHOICES = [

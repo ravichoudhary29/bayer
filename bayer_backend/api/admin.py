@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Patient, Doctor, Slot, Appointment, PublicInfo
+from .models import Patient, Doctor, Slot, Appointment
 
 # Register the Patient model
 @admin.register(Patient)
@@ -30,8 +30,8 @@ class AppointmentAdmin(admin.ModelAdmin):
     list_filter = ('status', 'appointment_date', 'doctor__specialization')
     ordering = ('-appointment_date',)
 
-# Register the PublicInfo model
-@admin.register(PublicInfo)
-class PublicInfoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description')
-    search_fields = ('title',)
+# # Register the PublicInfo model
+# @admin.register(PublicInfo)
+# class PublicInfoAdmin(admin.ModelAdmin):
+#     list_display = ('title', 'description')
+#     search_fields = ('title',)
