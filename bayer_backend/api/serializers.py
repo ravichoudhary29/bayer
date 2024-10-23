@@ -7,9 +7,14 @@ class AppointmentSerializer(serializers.ModelSerializer):
         fields = '__all__'  
 
 class DoctorSerializer(serializers.ModelSerializer):
+    user_name = serializers.SerializerMethodField() 
     class Meta:
         model = Doctor
         fields = '__all__'
+        
+    def get_user_name(self, obj):
+        return obj.user.username if obj.user else None
+
 
 class SlotSerializer(serializers.ModelSerializer):
     class Meta:

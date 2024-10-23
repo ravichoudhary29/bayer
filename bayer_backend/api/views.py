@@ -19,7 +19,7 @@ class AppointmentPagination(pagination.PageNumberPagination):
 class AppointmentViewSet(viewsets.ModelViewSet):
     serializer_class = AppointmentSerializer
     pagination_class = AppointmentPagination
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     throttle_classes = [throttling.UserRateThrottle]
 
     @action(detail=False, methods=['post'])
@@ -39,7 +39,7 @@ class AppointmentViewSet(viewsets.ModelViewSet):
 class DoctorViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     throttle_classes = [throttling.UserRateThrottle]
 
     def list(self, request, *args, **kwargs):

@@ -49,7 +49,7 @@ class Doctor(models.Model):
         ('OT', 'Orthopedic'),
         # Add more specializations as needed
     ]
-
+    
     specialization = models.CharField(max_length=2, choices=SPECIALIZATION_CHOICES)
     phone = models.CharField(max_length=15, unique=True)
     room_number = models.CharField(max_length=10)
