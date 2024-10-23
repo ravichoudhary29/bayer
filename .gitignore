@@ -1,0 +1,54 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+*.pot
+*.pyc
+
+# Django
+*.sqlite3
+db.sqlite3
+media/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Pyenv
+.python-version
+
+# VSCode settings
+.vscode/
+
+# Node.js (if you're using a Next.js frontend or other JavaScript frontend)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# MacOS
+.DS_Store
+
+# PyCharm
+.idea/
+
+# Heroku
+*.env
+Procfile
+
+# Migrations
+*/migrations/__pycache__/
+*/migrations/*.pyc
+*/migrations/*.log
+*/migrations/*.pot
+*/migrations/*.py
+
+# Static and Media files
+staticfiles/
+media/
