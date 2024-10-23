@@ -5,6 +5,7 @@ interface TextInputProps {
   label?: string;
   name: string;
   required?: boolean;
+  minLength?: number;
 }
 
 const Input: React.FC<TextInputProps> = ({
@@ -13,6 +14,7 @@ const Input: React.FC<TextInputProps> = ({
   label,
   name,
   required = false,
+  minLength = 1,
 }) => (
   <div className="mb-4">
     {label && (
@@ -25,6 +27,7 @@ const Input: React.FC<TextInputProps> = ({
     )}
     <input
       required={required}
+      minLength={minLength}
       type={type}
       name={name}
       id={name}
