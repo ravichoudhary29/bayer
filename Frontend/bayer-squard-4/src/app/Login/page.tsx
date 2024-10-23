@@ -7,8 +7,13 @@ import withFormWrapper from "@/hoc/withFormWrapper";
 const LoginForm: React.FC = () => {
   return (
     <form className="space-y-4">
-      <Input type="email" placeholder="Email" name="email" required />
-      <Input type="password" placeholder="Password" name="password" required />
+      <Input type="email" placeholder="Email" name="email" required={true} />
+      <Input
+        type="password"
+        placeholder="Password"
+        name="password"
+        required={true}
+      />
       <Button text="Login" />
       <div className="text-center text-sm">
         <a href="#" className="text-blue-500 hover:underline">
